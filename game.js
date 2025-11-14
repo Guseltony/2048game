@@ -3,7 +3,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const resultDisplay = document.querySelector("#result");
 
+  const width = 4;
+
+  let squares = [];
+
   // create the playing board
 
-  function createBoard() {}
+  function createBoard() {
+    for (let i = 0; i < width * width; i++) {
+      const square = document.createElement("div");
+      square.innerHTML = 0;
+      gridDisplay.appendChild(square);
+      squares.push(square);
+    }
+
+    generate();
+    generate();
+  }
+
+  createBoard();
+
+  // generate a new number
+
+  function generate() {
+    const randomNumber = Math.floor(Math.random() * squares.length);
+    console.log(randomNumber);
+    if (squares[randomNumber].innerHTML == 0) {
+      squares[randomNumber].innerHTML = 2;
+    } else generate();
+  }
+
+
 });
